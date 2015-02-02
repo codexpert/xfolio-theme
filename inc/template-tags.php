@@ -97,6 +97,22 @@ function xfolio_posted_on() {
 }
 endif;
 
+if ( ! function_exists( 'xfolio_posted_by_in' ) ) :
+/**
+ * Prints HTML with meta information for the current post-date/time and author.
+ */
+function xfolio_posted_by_in() {
+
+	$byline = sprintf(
+		_x( 'by %s', 'post author', 'xfolio' ),
+		'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
+	);
+
+	echo '<span class="byline"> ' . $byline . '</span><span class="in"> in ' . get_the_term_list( $post->ID, 'download_category', '', ', ', '' ) . '</span>';
+
+}
+endif;
+
 if ( ! function_exists( 'xfolio_entry_footer' ) ) :
 /**
  * Prints HTML with meta information for the categories, tags and comments.

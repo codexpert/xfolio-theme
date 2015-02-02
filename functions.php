@@ -98,6 +98,45 @@ function xfolio_widgets_init() {
 		'before_title'  => '<h1 class="widget-title">',
 		'after_title'   => '</h1>',
 	) );
+
+	register_sidebar( array(
+		'name'          => __( 'Item Sidebar', 'xfolio' ),
+		'id'            => 'sidebar-item',
+		'description'   => '',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h1 class="widget-title">',
+		'after_title'   => '</h1>',
+	) );
+
+	register_sidebar( array(
+		'name'          => __( 'Footer 1', 'xfolio' ),
+		'id'            => 'footer-1',
+		'description'   => '',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
+	) );
+	register_sidebar( array(
+		'name'          => __( 'Footer 2', 'xfolio' ),
+		'id'            => 'footer-2',
+		'description'   => '',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
+	) );
+	register_sidebar( array(
+		'name'          => __( 'Footer 3', 'xfolio' ),
+		'id'            => 'footer-3',
+		'description'   => '',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
+	) );
+
 }
 add_action( 'widgets_init', 'xfolio_widgets_init' );
 
@@ -107,13 +146,13 @@ add_action( 'widgets_init', 'xfolio_widgets_init' );
 function xfolio_scripts() {
 	wp_enqueue_style( 'xfolio-style', get_stylesheet_uri() );
 	
-	wp_enqueue_style( 'xfolio-bootstrap-style', get_template_directory_uri() .'/bower_components/bootstrap/dist/css/bootstrap.min.css');
-	wp_enqueue_style( 'xfolio-magnific-style', get_template_directory_uri() .'/bower_components/magnific-popup/dist/magnific-popup.css');
-	wp_enqueue_style( 'xfolio-animate-style', get_template_directory_uri() .'/css/animate.css');
-	wp_enqueue_style( 'xfolio-theme-style', get_template_directory_uri() .'/css/theme.css');
+	wp_enqueue_style( 'xfolio-bootstrap-css', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css');
+	wp_enqueue_style( 'xfolio-bootswatch', '//maxcdn.bootstrapcdn.com/bootswatch/3.3.2/sandstone/bootstrap.min.css');
+	wp_enqueue_style( 'xfolio-animate-css', get_template_directory_uri() .'/css/animate.css');
+	wp_enqueue_style( 'xfolio-theme-css', get_template_directory_uri() .'/css/theme.css');
+	wp_enqueue_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
 
-	wp_enqueue_script( 'xfolio-bootstrap-js', get_template_directory_uri() . '/bower_components/bootstrap/dist/js/bootstrap.min.js', array(), '', true );
-	wp_enqueue_script( 'xfolio-magnific-js', get_template_directory_uri() . '/bower_components/magnific-popup/dist/jquery.magnific-popup.min.js', array(), '', true );
+	wp_enqueue_script( 'xfolio-bootstrap-js', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js' );
 	wp_enqueue_script( 'xfolio-theme-js', get_template_directory_uri() . '/js/theme.min.js', array(), '', true );
 	
 
@@ -160,3 +199,119 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+
+// Bootstrap Navwalker
+require get_template_directory() . '/inc/bootstrap-navwalker.php';
+
+// Bootstrap Pagination
+require get_template_directory() . '/inc/bootstrap-pagination.php';
+
+// remove the standard button that shows after the download's content
+remove_action( 'edd_after_download_content', 'edd_append_purchase_link' );
+
+function xfolio_edd_hide_payment_icons() {
+	$cart_total = edd_get_cart_total();
+
+	if ( $cart_total )
+		return;
+
+	remove_action( 'edd_payment_mode_top', 'edd_show_payment_icons' );
+	remove_action( 'edd_checkout_form_top', 'edd_show_payment_icons' );
+}
+add_action( 'template_redirect', 'xfolio_edd_hide_payment_icons' );
+
+
+/**
+ * Get the bootstrap! of CMB2
+ */
+if ( file_exists(  __DIR__ . '/cmb2/init.php' ) ) {
+  require_once  __DIR__ . '/cmb2/init.php';
+} elseif ( file_exists(  __DIR__ . '/CMB2/init.php' ) ) {
+  require_once  __DIR__ . '/CMB2/init.php';
+}
+
+add_filter( 'cmb2_meta_boxes', 'xfolio_download_meta' );
+/**
+ * Define the metabox and field configurations.
+ *
+ * @param  array $meta_boxes
+ * @return array
+ */
+function xfolio_download_meta( array $meta_boxes ) {
+
+    // Start with an underscore to hide fields from custom fields list
+    $prefix = '_tx_';
+
+    /**
+     * Download Post type meta box
+     */
+    $meta_boxes['xfolio_download_meta'] = array(
+        'id'            => 'xfolio_download_meta',
+        'title'         => __( 'Necessery Info', 'cmb2' ),
+        'object_types'  => array( 'download', ), // Post type
+        'context'       => 'normal',
+        'priority'      => 'high',
+        'show_names'    => true, // Show field names on the left
+        // 'cmb_styles' => false, // false to disable the CMB stylesheet
+        // 'closed'     => true, // Keep the metabox closed by default
+        'fields'        => array(
+            array(
+                'name'       => __( 'Demo Url', 'cmb2' ),
+                // 'desc'       => __( 'Demo Url', 'cmb2' ),
+                'id'         => $prefix . 'demo_url',
+                'type'       => 'text_url',
+                // 'show_on_cb' => 'cmb2_hide_if_no_cats', // function should return a bool value
+                // 'sanitization_cb' => 'my_custom_sanitization', // custom sanitization callback parameter
+                // 'escape_cb'       => 'my_custom_escaping',  // custom escaping callback parameter
+                // 'on_front'        => false, // Optionally designate a field to wp-admin only
+                // 'repeatable'      => true,
+            ),
+            array(
+                'name' => __( 'Compatible With', 'cmb2' ),
+                // 'desc' => __( 'Release Version', 'cmb2' ),
+                'id'   => $prefix . 'compatible',
+                'type' => 'multicheck',
+                'options' => array(
+			        'Bootstrap 2.x' => __( 'Bootstrap 2.x', 'cmb' ),
+			        'Bootstrap 3.x' => __( 'Bootstrap 3.x', 'cmb' ),
+			        'Wordpress 3.9' => __( 'Wordpress 3.9', 'cmb' ),
+			        'Wordpress 4.x' => __( 'Wordpress 4.x', 'cmb' ),
+			        'WooCommerce' => __( 'WooCommerce', 'cmb' ),
+			        'Gravity Form' => __( 'Gravity Form', 'cmb' ),
+			        'Joomla 2.5.x' => __( 'Joomla 2.5.x', 'cmb' ),
+			        'Joomla 3.x' => __( 'Joomla 3.x', 'cmb' ),
+			    ),
+            ),
+            array(
+                'name' => __( 'Files Included', 'cmb2' ),
+                // 'desc' => __( 'field description (optional)', 'cmb2' ),
+                'id'   => $prefix . 'files_included',
+                'type' => 'multicheck',
+			    'options' => array(
+			        'HTML' => 'HTML',
+			        'CSS' => 'CSS',
+			        'Images' => 'Images',
+			        'Javascript' => 'Javascript',
+			        'PHP' => 'PHP',
+			        'PSD' => 'PSD',
+			    )
+            ),
+            array(
+                'name'       => __( 'Support Url', 'cmb2' ),
+                'desc'       => __( 'Your support website url', 'cmb2' ),
+                'id'         => $prefix . 'support_url',
+                'type'       => 'text_url',
+            ),
+            array(
+                'name'       => __( 'Paypal Email', 'cmb2' ),
+                'desc'       => __( 'Your Paypal email to receive donation', 'cmb2' ),
+                'id'         => $prefix . 'paypal',
+                'type'       => 'text_email',
+            ),
+        ),
+    );
+
+    // Add other metaboxes as needed
+
+    return $meta_boxes;
+}

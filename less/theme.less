@@ -1,108 +1,174 @@
-@text-color : #314046;
+@text-color : #706c66;
+@background-color : #f8f5f0;
+@navbar-bg : #3e3f3a;
+@color-green : #4CAF50;
 
 body{
-	background: #f5f8f9;
+	background: #fff;
 	color: @text-color;
-	font-family: 'Raleway', sans-serif;
+	font-size: 16px; 
+	font-weight: 300;
+	font-family: 'Roboto', sans-serif;
+	padding-top: 63px;
+}
+a:hover{ text-decoration: none; }
+section{ 
+	padding-top: 70px;
+	padding-bottom: 50px;
+	border-bottom:1px solid darken(@background-color, 5%);
+
+	.section-title{
+		font-size: 20px;
+		font-weight: 700;
+		text-transform: uppercase;
+		color: darken(@text-color, 10%);
+		letter-spacing: 1px;
+	}
+	.section-subtitle{
+		font-size: 30px;
+		line-height: 43px;
+		font-weight: 300;
+		margin: 0 auto 70px;
+	}
+	.section-title,
+	.section-subtitle{ text-align: center; }
+}
+.light-bg{ background: @background-color; }
+
+// Font awesome icon
+.fa{ margin-right: 5px; }
+
+// Navbar
+.home{
+	padding-top: 0;
+	.navbar{
+		transition: all 0.2s ease-in-out;
+		&.affix-top{ background: transparent; border: 0; }
+	}	
 }
 
-// Sidebar + Widget styles
-// ---------------------------------
-.sidebar {
-	position: fixed; top: 0; bottom: 0; left: 0; z-index: 1000;
-	display: block;
-	padding: 40px 20px; 
-	overflow-x: hidden; overflow-y: auto;
-	background-color: #fff;
-	border-right: 1px solid #eee;
-}
-.site-branding{
-	.logo{ 
+.navbar-header{
+	.navbar-brand{ 
 		display: block;
-		width: 162px;
-		height: 36px;
+		width: 230px;
+		height: 64px;
 		background: url( ../images/logo.png ) no-repeat;
+		padding: 0;
 	}
-	.logo,
+	.navbar-brand,
 	.site-description{ text-indent: -9999px; }
 }
-// Widget - EDD Category
-.widget{
-	margin-top: 40px;
-	.widget-title{ text-transform: uppercase; font-size: 14px; font-weight: bold; }
-}
-.edd-taxonomy-widget,
-.menu{
-	list-style: none;
-	padding: 0;
-	margin: 10px 0;
-
-	> li > a{ 
-		display: block;
-		line-height: 30px;
-		margin-bottom: 5px;
-		color: #666;
-	}
-}
-.textwidget{ font-size: 13px; color: #666; }
-
-.hero-area{ 
-	background: url(../images/bg/bg2.jpg) no-repeat 50% 50%; 
+// Splash
+.splash{
+	padding: 12em 0 9em;
+	background-color: #141d27;
+	background-image: url(../images/bg/bg.jpg);
 	background-size: cover;
-	margin-left: -15px;
-	margin-right: -15px;
+	background-attachment: fixed;
 	color: #fff;
-	vertical-align: center;
 	text-align: center;
 
-	.title{ 
-		font-size: 4.5em;
-		padding-top: 25%; 
-		margin: 0 0 30px; 
+	h1{
+		font-size: 2.7em; font-weight: 300; margin: 0 0 20px;
 	}
-	.subtitle{ text-transform: uppercase; font-size: 22px; }
-}
-.navbar{
-	background: #fff;
-	margin-left: -15px;
-	margin-right: -15px;
-	border-radius: 0;
-	border-width: 0 0 1px 0;
+	.cat-list{
+		font-size: 26px; 
+		color: @text-color;
+		li{ list-style: none; display: inline; }
+		a{ color: #fff; padding: 0 5px; text-decoration: underline; }
+	}
+	.input-group{ 
+		.form-control{ border: 0; }
+		margin: 20px auto 0; 
+		.btn{ background: #f9f9f9; color: #ccc; line-height: 42px;  }
+	}
+	@media( min-width: 768px ){
+		.input-group{ width: 40%; }
 
-	&.affix{ top: 0; z-index: 999; width: 100%; }
-	.pull-right { margin-right: 15px; }
+	}
 }
+
+figure{
+	margin-bottom: 20px; 
+	img{ max-width: 100%; }
+	.title{ 
+		margin: 10px 0 0; 
+		font-size: 16px; font-weight: 700; color: @text-color;
+	}
+	p,
+	span{ font-size: 14px; color: darken(@background-color, 25%); }
+	.btn{ margin-top: 10px; line-height: 14px; }
+}
+
+// Resources area
+#resources{
+	p{ color: #888; line-height: 1.5em; margin-top: 10px; }
+	a:hover{ color: darken(@color-green, 10%); }
+}
+.codeschool{
+	img{ background-color: #4cadc0; padding: 60px 30px; }
+}
+.tutsplus{
+	img{ background-color: #d8532a; padding: 73px 137px; }
+}
+.codecademy{
+	img{ background-color: #f1f2f2; padding: 57px 30px; }
+}
+// ------------------------------------------
+// Footer Area
+// ------------------------------------------
+#floor{
+	background: darken(@navbar-bg, 2%);
+	padding: 50px 0;
+	font-size: 14px;
+
+	.widget-title{
+		text-transform: uppercase;
+		font-size: 18px;
+		color: #f5f5f5;
+	}
+	ul{ list-style: none; margin: 0; padding: 0; }
+}
+.site-info{ 
+	background: darken(@navbar-bg, 15%);
+	padding: 20px 0;
+	text-align: center;
+}
+//Download Item page
 .page-header{
-	margin: 0 0 20px;
-	font-size: 20px;
-	text-transform: uppercase;
+	margin: 0 0 40px; padding: 40px 0;
+	.page-title{ font-size: 35px; font-weight: 300; letter-spacing: 1px; margin: 0; }
 }
-.items{  }
-.item{ 
-	background: #fff; 
-	padding-bottom: 15px;
-	box-shadow: 0 0 5px #ddd;
-	margin-bottom: 30px;
-	.title{ font-size: 14px; text-transform: uppercase; margin: 10px 0 0; padding: 0 15px;}
-}
-// Featured Item
-.featured-item{
-	background: #fff;
-	box-shadow: 0 0 5px #ddd;
-	padding: 15px;
-	margin-bottom: 30px;
-	figure{ float: left; width: 40%; margin-right: 30px; }
-	.title{ margin: 0 0 20px; }
-}
-figure img{ width: 100%; }
 
-.ajax-content{
-	background: #fff;
-	width: 60%;
-	margin: 10px auto;
-	padding: 20px;
-
+.type-download{
 	img{ width: 100%; }
 }
-.site-footer{ margin-top: 20px; }
+.info-inner{ margin-left: 40px; }
+.page-header{ font-size: 2.5em; border: 0; }
+.entry-content{ margin-top: 20px; }
+.tab-pane{ padding: 20px 10px; }
+.well{
+	.box{ 
+		background: #fff; text-align: center; padding: 10px; 
+		strong{ font-size: 3em; line-height: 1; display: block; }
+		span{ color: #999; }
+	}
+}
+.panel-author{
+	text-align: center; margin-top: 40px; 
+	.avatar{ margin-top: -35px; border-radius: 50%; }
+}
+// Tag Cloud
+.tag-cloud a{
+	background: @background-color;
+	margin-right: 10px;
+	padding: 3px 10px;
+	font-size: 1em;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: #98978b;
+	border: 1px solid darken(@background-color, 10%);
+	&:hover{ background: darken(@background-color, 30%); color: #fff; }
+}
+.site-footer{ }
 .skip-link{ display: none; }

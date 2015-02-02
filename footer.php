@@ -7,16 +7,30 @@
  * @package xFolio
  */
 ?>
-	<footer id="colophon" class="site-footer" role="contentinfo">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'xfolio' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'xfolio' ), 'WordPress' ); ?></a>
-			<span class="sep"> | </span>
-			<?php printf( __( 'Theme: %1$s by %2$s.', 'xfolio' ), 'xFolio', '<a href="http://www.themexpert.com" rel="designer">Parvez Akther</a>' ); ?>
-		</div><!-- .site-info -->
-	</footer><!-- #colophon -->
-	
-	</div><!-- #content -->
-</div> <!-- Row end -->
+<?php get_template_part( 'xfolio', 'resources' ); ?>
+
+<footer id="footer" class="site-footer" role="contentinfo">
+	<div id="floor">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4"><?php dynamic_sidebar( 'footer-1' ); ?></div>
+				<div class="col-md-4"><?php dynamic_sidebar( 'footer-2' ); ?></div>
+				<div class="col-md-4"><?php dynamic_sidebar( 'footer-3' ); ?></div>
+			</div>	
+		</div>
+	</div>
+	<div class="site-info">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					© 2015 ThemesGrove. Made with &hearts; by <a href="http://www.themexpert.com">ThemeXpert</a>		
+				</div>
+			</div>
+		</div>
+	</div><!-- .site-info -->
+</footer><!-- #colophon -->
+
+</div><!-- #content -->
 
 </div><!-- #page -->
 
