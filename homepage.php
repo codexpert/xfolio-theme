@@ -44,7 +44,6 @@ $featured = new WP_Query( $args );
 					</a>	
 					<figcaption class="pull-left">
 						<a href="<?php echo get_permalink();?>"><h3 class="title"><?php the_title(); ?></h3></a>
-						<?php xfolio_posted_by_in(); ?>
 					</figcaption>
 					<a class="btn btn-success pull-right" href="<?php echo get_permalink();?>">Download</a>
 				</figure>

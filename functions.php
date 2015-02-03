@@ -15,7 +15,7 @@ if ( ! isset( $content_width ) ) {
 if ( ! function_exists( 'xfolio_setup' ) ) :
 
 add_filter('show_admin_bar', '__return_false');
-
+define('EDD_SLUG', 'items'); 
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
