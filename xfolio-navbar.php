@@ -44,7 +44,7 @@
 				<a class="btn btn-success navbar-btn" href="<?php echo wp_registration_url(); ?>">Submit Item</a>	
 				<a class="btn btn-default navbar-btn" href="<?php echo site_url();?>/wp-login.php">Login</a>
 			<?php else :?>
-				<a class="btn btn-success navbar-btn" href="wp-admin/post-new.php?post_type=download">Submit Item</a>	
+				<a class="btn btn-success navbar-btn" href="<?php echo site_url();?>/wp-admin/post-new.php?post_type=download">Submit Item</a>	
 				
 				<?php 
 					global $current_user;
