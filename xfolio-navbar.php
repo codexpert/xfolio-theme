@@ -55,20 +55,21 @@
 				    <?php echo get_avatar( $current_user->ID, 16 ); ?> My Account
 				    <span class="caret"></span>
 				  </a>
-				  
-				  <?php
-		            wp_nav_menu( array(
-		                'menu'              => 'user',
-		                'theme_location'    => 'user',
-		                'depth'             => 2,
-		                'container'         => false,
-		                // 'container_class'   => 'collapse navbar-collapse',
-		        		// 'container_id'      => 'bs-example-navbar-collapse-1',
-		                'menu_class'        => 'dropdown-menu',
-		                'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
-		                'walker'            => new wp_bootstrap_navwalker())
-		            );
-		        	?>
+				  <div class="dropdown">
+					  <?php
+			            wp_nav_menu( array(
+			                'menu'              => 'user',
+			                'theme_location'    => 'user',
+			                'depth'             => 2,
+			                'container'         => false,
+			                // 'container_class'   => 'collapse navbar-collapse',
+			        		// 'container_id'      => 'bs-example-navbar-collapse-1',
+			                'menu_class'        => 'dropdown-menu',
+			                'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
+			                'walker'            => new wp_bootstrap_navwalker())
+			            );
+			        	?>
+		        	</div>
 		        	<a class="btn btn-danger" href="<?php echo wp_logout_url( get_permalink() ); ?>" title="Logout">Logout</a>				
 	      	<?php endif; ?>
 	      </div>
