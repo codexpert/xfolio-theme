@@ -4,17 +4,32 @@
  *
  */
 get_header(); 
-$recent = xfolio_get_posts('download');
-$featured = xfolio_get_posts('download', 3, 'featured');
 ?>
 
 <?php get_template_part( 'xfolio', 'header' ); ?>
 
+<?php 
+// Get featured post
+$args = array(
+    'post_type' => 'download',
+    'showposts' => 3,
+    'tax_query' => array(
+        array(
+            'taxonomy' => 'download_category',
+            'field' => 'slug',
+            'terms' => 'featured'
+        )
+    )
+);
+$featured = new WP_Query( $args );
+?>
+<?php if($featured) : ?>
 <section id="featured">
 	<div class="container">
 		<h2 class="section-title">Exclusive Free Goods</h2>
 		<h3 class="section-subtitle">Hand picked exclusive goods, so get 'em before fast!</h3>
 		<div class="row">
+		
 		<?php while ( $featured->have_posts() ) : $featured->the_post(); ?>
 			<div class="col-md-4 col-sm-6">
 				<figure class="clearfix">
@@ -38,7 +53,18 @@ $featured = xfolio_get_posts('download', 3, 'featured');
 		</div>
 	</div>	
 </section>
+<?php endif;?>
+<?php wp_reset_query(); ?>
 
+<?php 
+// Recent Post query
+$args = array(
+    'post_type' => 'download',
+    'showposts' => 9
+);
+$recent = new WP_Query( $args ); 
+?>
+<?php if($recent) :?>
 <section id="latest" class="light-bg">
 	<div class="container">
 		<h2 class="section-title">Latest Products</h2>
@@ -67,5 +93,7 @@ $featured = xfolio_get_posts('download', 3, 'featured');
 		</div>
 	</div>	
 </section>
+<?php endif;?>
+<?php wp_reset_query(); ?>
 
 <?php get_footer(); ?>

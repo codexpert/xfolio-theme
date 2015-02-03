@@ -163,18 +163,6 @@ function xfolio_scripts() {
 add_action( 'wp_enqueue_scripts', 'xfolio_scripts' );
 
 
-// Get post from given post type
-function xfolio_get_posts( $type, $post_per_page=4, $cat='' )
-{
-	$args = array( 'post_type' => $type, 'posts_per_page' => $post_per_page, 'cat' => $cat );
-
-	$post = new WP_Query($args);
-
-	wp_reset_postdata();
-
-	return $post;
-}
-
 /**
  * Implement the Custom Header feature.
  */
