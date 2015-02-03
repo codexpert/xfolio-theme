@@ -128,7 +128,7 @@ $status    = edd_get_payment_status( $payment, true );
 				<th><?php _e( 'Quantity', 'edd' ); ?></th>
 			<?php endif; ?>
 			<th>Download Files</th>
-			<th><?php _e( 'Price', 'edd' ); ?></th>
+			
 		</thead>
 
 		<tbody>
@@ -222,11 +222,7 @@ $status    = edd_get_payment_status( $payment, true );
 						</ul>
 						<?php endif; ?>
 					</td>
-					<td>
-						<?php if( empty( $item['in_bundle'] ) ) : // Only show price when product is not part of a bundle ?>
-							<?php echo edd_currency_filter( edd_format_amount( $item[ 'price' ] ) ); ?>
-						<?php endif; ?>
-					</td>
+					
 				</tr>
 				<?php endif; ?>
 			<?php endforeach; ?>
