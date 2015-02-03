@@ -40,8 +40,29 @@
 		</form>
 		<?php endif; ?>
 	      <div class="nav navbar-nav navbar-right">
-			<a class="btn btn-success navbar-btn">Submit Item</a>	
-			<a class="btn btn-default navbar-btn" href="<?php echo site_url();?>/wp-login.php">Login</a>
+	      	<?php if ( ! is_user_logged_in() ) :?>
+				<a class="btn btn-success navbar-btn" href="<?php echo wp_registration_url(); ?>">Submit Item</a>	
+				<a class="btn btn-default navbar-btn" href="<?php echo site_url();?>/wp-login.php">Login</a>
+			<?php else :?>
+				<a class="btn btn-success navbar-btn" href="#">Submit Item</a>	
+				
+				<?php 
+					global $current_user;
+	      			get_currentuserinfo(); 
+	      		?>
+				
+				  <a class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+				    <?php echo get_avatar( $current_user->ID, 16 ); ?> <?php echo $current_user->display_name; ?>
+				    <span class="caret"></span>
+				  </a>
+				  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+				    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+				    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+				    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+				    <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo wp_logout_url( get_permalink() ); ?>">Logout</a></li>
+				  </ul>
+				
+	      	<?php endif; ?>
 	      </div>
 
 	    </div>
