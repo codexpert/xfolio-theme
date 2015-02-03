@@ -13,6 +13,9 @@ if ( ! isset( $content_width ) ) {
 }
 
 if ( ! function_exists( 'xfolio_setup' ) ) :
+
+add_filter('show_admin_bar', '__return_false');
+
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -55,6 +58,9 @@ function xfolio_setup() {
 
 	// Enable support for Post Thumbnails, and declare two sizes.
 	add_theme_support( 'post-thumbnails' );
+	// Add notice on featured image meta box
+	add_filter( 'admin_post_thumbnail_html', 'add_featured_image_instruction');
+	
 	// set_post_thumbnail_size( 672, 372, true );
 	add_image_size( 'xfolio-homepage-thumb', 730, 400, array( 'left', 'top' ));
 
@@ -194,6 +200,10 @@ require get_template_directory() . '/inc/bootstrap-navwalker.php';
 // Bootstrap Pagination
 require get_template_directory() . '/inc/bootstrap-pagination.php';
 
+function add_featured_image_instruction( $content ) {
+    return $content .= '<p style="color: #b71c1c;">Image size must be: <strong>1180x660</strong></p>';
+}
+
 // remove the standard button that shows after the download's content
 remove_action( 'edd_after_download_content', 'edd_append_purchase_link' );
 
@@ -235,7 +245,7 @@ function xfolio_download_meta( array $meta_boxes ) {
      */
     $meta_boxes['xfolio_download_meta'] = array(
         'id'            => 'xfolio_download_meta',
-        'title'         => __( 'Necessery Info', 'cmb2' ),
+        'title'         => __( 'Theme Info', 'cmb2' ),
         'object_types'  => array( 'download', ), // Post type
         'context'       => 'normal',
         'priority'      => 'high',
@@ -245,7 +255,7 @@ function xfolio_download_meta( array $meta_boxes ) {
         'fields'        => array(
             array(
                 'name'       => __( 'Demo Url', 'cmb2' ),
-                // 'desc'       => __( 'Demo Url', 'cmb2' ),
+                'desc'       => __( 'Direct link to your demo, no iframe url.', 'cmb2' ),
                 'id'         => $prefix . 'demo_url',
                 'type'       => 'text_url',
                 // 'show_on_cb' => 'cmb2_hide_if_no_cats', // function should return a bool value

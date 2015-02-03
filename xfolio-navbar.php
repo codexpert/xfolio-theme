@@ -1,4 +1,4 @@
-<header class="navbar navbar-default navbar-fixed-top" data-spy="affix" data-offset-top="100"> 
+<header class="navbar navbar-default navbar-fixed-top" data-spy="affix" data-offset-top="120"> 
 	<div class="container">
 		
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -30,7 +30,7 @@
 
 	      
 		<?php if ( !is_front_page() && !is_home() ) :?>
-		<form role="search" method="get" class="navbar-form navbar-left" action="http://localhost/themesgrove/">
+		<form role="search" method="get" class="navbar-form navbar-left">
 		  	<div class="input-group">
 		      <input type="search" class="form-control search-field" placeholder="Search …" value="" name="s" title="Search for:">
 		      <span class="input-group-btn">
@@ -52,16 +52,24 @@
 	      		?>
 				
 				  <a class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-				    <?php echo get_avatar( $current_user->ID, 16 ); ?> <?php echo $current_user->display_name; ?>
+				    <?php echo get_avatar( $current_user->ID, 16 ); ?> My Account
 				    <span class="caret"></span>
 				  </a>
-				  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-				    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-				    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-				    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-				    <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo wp_logout_url( get_permalink() ); ?>">Logout</a></li>
-				  </ul>
-				
+				  
+				  <?php
+		            wp_nav_menu( array(
+		                'menu'              => 'user',
+		                'theme_location'    => 'user',
+		                'depth'             => 2,
+		                'container'         => false,
+		                // 'container_class'   => 'collapse navbar-collapse',
+		        		// 'container_id'      => 'bs-example-navbar-collapse-1',
+		                'menu_class'        => 'dropdown-menu',
+		                'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
+		                'walker'            => new wp_bootstrap_navwalker())
+		            );
+		        	?>
+		        	<a class="btn btn-danger" href="<?php echo wp_logout_url( get_permalink() ); ?>" title="Logout">Logout</a>				
 	      	<?php endif; ?>
 	      </div>
 
