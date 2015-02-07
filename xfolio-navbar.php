@@ -1,6 +1,5 @@
 <header class="navbar navbar-default navbar-fixed-top" data-spy="affix" data-offset-top="120"> 
 	<div class="container">
-		
 		<!-- Brand and toggle get grouped for better mobile display -->
 	    <div class="navbar-header">
 	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
@@ -74,6 +73,5 @@
 	      </div>
 
 	    </div>
-
 	</div>
-</header>
+</header><!-- #header -->

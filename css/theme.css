@@ -213,9 +213,11 @@ figure .btn {
   margin-top: -35px;
   border-radius: 50%;
 }
-.tag-cloud a {
+.tag-cloud a,
+.tagcloud a {
   background: #f8f5f0;
-  margin-right: 10px;
+  display: inline-block;
+  margin: 5px;
   padding: 3px 10px;
   font-size: 1em;
   text-transform: uppercase;
@@ -223,10 +225,98 @@ figure .btn {
   color: #98978b;
   border: 1px solid #e8decd;
 }
-.tag-cloud a:hover {
+.tag-cloud a:hover,
+.tagcloud a:hover {
   background: #c7af88;
   color: #fff;
 }
 .skip-link {
   display: none;
+}
+.search .jumbotron {
+  text-align: center;
+}
+.search #searchform {
+  margin: 40px 30% 0;
+}
+.blog .entry-title,
+.single .entry-title,
+.archive .entry-title {
+  margin: 0 0 15px;
+  font-size: 30px;
+  line-height: 1em;
+}
+.blog #page,
+.single #page {
+  padding: 40px 0 ;
+}
+.blog .article-inner,
+.archive .article-inner {
+  border-bottom: 1px solid #eef1f5;
+  margin-bottom: 60px;
+  padding-bottom: 60px;
+}
+.blog .article-inner img,
+.archive .article-inner img {
+  width: 100%;
+}
+.blog .article-inner .entry-title a,
+.archive .article-inner .entry-title a {
+  color: #4c4c4c;
+}
+.blog .article-inner .entry-meta a,
+.archive .article-inner .entry-meta a {
+  color: #999;
+}
+.blog .article-inner .entry-title a:hover,
+.archive .article-inner .entry-title a:hover,
+.blog .article-inner .entry-meta a:hover,
+.archive .article-inner .entry-meta a:hover {
+  color: #4caf50;
+}
+.blog .article-inner .more-link,
+.archive .article-inner .more-link {
+  border: 1px solid #494949;
+  padding: 10px 20px;
+  margin-top: 15px;
+  display: inline-block;
+  color: #494949;
+  border-radius: 50px;
+  transition: all 0.3s ease-in-out;
+}
+.blog .article-inner .more-link:hover,
+.archive .article-inner .more-link:hover {
+  background: #4caf50;
+  border-color: #449d48;
+  color: #fff;
+}
+.single .avatar + p {
+  margin: 5px 0 0;
+  color: #999;
+  margin-right: 17px;
+  text-align: right;
+}
+.widget-area aside {
+  padding: 15px;
+}
+.widget-area aside + aside {
+  margin-top: 20px;
+}
+.widget-area h3 {
+  margin: 0 0 15px;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.widget_categories ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.widget_categories ul li {
+  padding: 10px 0;
+  border-bottom: 1px dashed #ddd;
+}
+.widget_categories ul li:last-child {
+  border: 0;
 }

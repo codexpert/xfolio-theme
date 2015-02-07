@@ -24,4 +24,4 @@
 	<?php get_template_part( 'xfolio', 'navbar' ); ?>
 
 <div id="page" class="hfeed site">
-	<div id="content" class="main">
+

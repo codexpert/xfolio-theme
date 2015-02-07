@@ -115,6 +115,7 @@ figure{
 .codecademy{
 	img{ background-color: #f1f2f2; padding: 57px 30px; }
 }
+
 // ------------------------------------------
 // Footer Area
 // ------------------------------------------
@@ -160,9 +161,11 @@ figure{
 	.avatar{ margin-top: -35px; border-radius: 50%; }
 }
 // Tag Cloud
-.tag-cloud a{
+.tag-cloud a,
+.tagcloud a{
 	background: @background-color;
-	margin-right: 10px;
+	display: inline-block;
+	margin: 5px;
 	padding: 3px 10px;
 	font-size: 1em;
 	text-transform: uppercase;
@@ -173,3 +176,64 @@ figure{
 }
 .site-footer{ }
 .skip-link{ display: none; }
+
+// ------------------------------------------
+// Search page
+// ------------------------------------------
+.search{
+	.jumbotron{ text-align: center; }
+	#searchform{ margin: 40px 30% 0;}
+}
+// ------------------------------------------
+// Blog Style
+// ------------------------------------------
+.blog,
+.single,
+.archive{ 
+	.entry-title{ margin: 0 0 15px; font-size: 30px; line-height: 1em; }
+}
+.blog,
+.single{ 	
+	#page{ padding: 40px 0 ; }  
+}
+.blog,
+.archive{
+	.article-inner{ 
+		border-bottom: 1px solid #eef1f5; margin-bottom: 60px; padding-bottom: 60px; 
+
+		img{ width: 100%; }
+		
+		.entry-title a{ color: #4c4c4c; }
+		.entry-meta a{ color: #999; }
+
+		.entry-title a:hover,
+		.entry-meta a:hover{ color: @color-green; }
+
+		.more-link{
+			border: 1px solid #494949;
+			padding: 10px 20px;
+			margin-top: 15px;
+			display: inline-block;
+			color: #494949;
+			border-radius: 50px;
+			transition : all 0.3s ease-in-out;
+
+			&:hover{ background: @color-green; border-color: darken(@color-green, 5%); color: #fff; }
+		}
+	}
+}
+.single{
+	.avatar{ }
+	.avatar+p { margin: 5px 0 0; color: #999; margin-right: 17px; text-align: right; }
+}
+// Sidebar widget area
+.widget-area{
+	aside{ padding: 15px; }
+	aside + aside{ margin-top: 20px; }
+	h3{ margin: 0 0 15px; font-size: 20px; text-transform: uppercase; letter-spacing: 1px; }
+}
+.widget_categories{
+	ul{ list-style: none; margin: 0; padding: 0; }
+	ul li{ padding: 10px 0; border-bottom: 1px dashed #ddd; }
+	ul li:last-child{ border: 0; }
+}

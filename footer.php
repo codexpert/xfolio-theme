@@ -7,6 +7,8 @@
  * @package xFolio
  */
 ?>
+</div><!-- #page -->
+
 <?php get_template_part( 'xfolio', 'resources' ); ?>
 
 <footer id="footer" class="site-footer" role="contentinfo">
@@ -27,12 +29,8 @@
 				</div>
 			</div>
 		</div>
-	</div><!-- .site-info -->
-</footer><!-- #colophon -->
-
-</div><!-- #content -->
-
-</div><!-- #page -->
+	</div>
+</footer>
 
 <?php wp_footer(); ?>
 

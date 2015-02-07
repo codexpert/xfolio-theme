@@ -37,9 +37,9 @@ $featured = new WP_Query( $args );
 						<?php 
 	        			if (has_post_thumbnail( $post->ID ) ){
 							$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'xfolio-homepage-thumb' ); ?>
-							<img src="<?php echo $image[0]; ?>">	
+							<img src="<?php echo $image[0]; ?>" alt="<?php the_title(); ?>">	
 						<?php } else { ?>
-						<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/deafdiv class="row"t.png">
+						<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/default.png">
 						<?php	} ?>
 					</a>	
 					<figcaption class="pull-left">
