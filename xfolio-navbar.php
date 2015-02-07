@@ -28,7 +28,7 @@
         ?>
 
 	      
-		<?php if ( !is_front_page() && !is_home() ) :?>
+		<?php if ( !is_front_page() && !is_home() &&('post' != get_post_type()) ) :?>
 		<form role="search" method="get" class="navbar-form navbar-left">
 		  	<div class="input-group">
 		      <input type="search" class="form-control search-field" placeholder="Search …" value="" name="s" title="Search for:">
